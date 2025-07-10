@@ -1,1 +1,0 @@
-# hackthon-insurance-ai-assist

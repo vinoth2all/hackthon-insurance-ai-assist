@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66" height="66" viewBox="0 0 66 66">
+  <defs>
+    <filter id="Path_24763" x="0" y="0" width="66" height="66" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#628cab" flood-opacity="0.329"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Chat-enter-hover" transform="translate(9 9)">
+    <g transform="matrix(1, 0, 0, 1, -9, -9)" filter="url(#Path_24763)">
+      <path id="Path_24763-2" data-name="Path 24763" d="M4.056,0H43.944A4.056,4.056,0,0,1,48,4.056V43.944A4.056,4.056,0,0,1,43.944,48H4.056A4.056,4.056,0,0,1,0,43.944V4.056A4.056,4.056,0,0,1,4.056,0Z" transform="translate(9 9)" fill="#f0faff"/>
+    </g>
+    <g id="Group_24347" data-name="Group 24347" transform="translate(8.49 6.492)">
+      <path id="Path_24762" data-name="Path 24762" d="M10.5,1.476a2.985,2.985,0,0,1,5.152,0L25.748,18.705A2.985,2.985,0,0,1,23.172,23.2S17.947,20.11,12.9,20.11,2.99,23.2,2.99,23.2A2.985,2.985,0,0,1,.414,18.705Z" transform="translate(27.142 4.447) rotate(90)" fill="#91cae5"/>
+      <line id="Line_713" data-name="Line 713" x2="10" transform="translate(3.943 17.528)" fill="none" stroke="#f0faff" stroke-linecap="round" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

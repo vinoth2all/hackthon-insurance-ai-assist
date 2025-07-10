@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="124.6" height="39.622" viewBox="0 0 124.6 39.622">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_11636" data-name="Path 11636" d="M2-606.378H126.6V-646H2Z" transform="translate(-2 646)" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_187" data-name="Rectangle 187" width="125.177" height="40.057" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <path id="Path_11635" data-name="Path 11635" d="M125.961-618.376l-.52,2.064h-.006l-.492-2.064h-.574l-.065,2.092h.28l.062-2.064h.006l.515,2.064h.523l.546-2.064h.006l.062,2.064h.3l-.068-2.092Zm-3.488,0v.234h.633v1.858h.3v-1.858h.634v-.234Zm-46.53-10.43c0-3.336-2.519-4.682-5.643-4.682-3.294,0-5.757,2.048-5.757,7.3s2.463,7.3,5.757,7.3c3.124,0,5.643-1.346,5.643-4.682Zm0-17.194h3.487v29.716H75.94v-4.487h-.169c-.334,2.764-2.455,4.946-6.476,4.946-4.906,0-8.392-3.891-8.392-10.364s3.486-10.364,8.392-10.364c4.021,0,6.142,2.181,6.476,4.945h.169Zm11.623,14.394h-.17v-4.489H83.907v19.811h3.487v-12.374c0-3.336,1.892-4.552,5.137-4.552a9.392,9.392,0,0,1,2.161.232v-3.365a5.105,5.105,0,0,0-1.654-.21,5.349,5.349,0,0,0-5.474,4.948Zm-78.3,5.416,8.605-9.905h-4.24L5.6-626.534H5.487V-646H2v29.716H5.487v-9.722H8.8l6.7,9.722h4.043L12.6-626.189Zm96.338,9.373h-.114L99.43-636.095H95.817l6.406,19.811h3.208l-3.266,9.905h3.479l9.6-29.716h-3.612Zm-76.522,0h-.114l-6.053-19.279H19.3L25.7-616.284h3.208l-3.266,9.905h3.479l9.6-29.716H35.106Zm21.335-19.737a5.524,5.524,0,0,0-5.85,4.945h-.17v-4.487H40.9v19.811h3.487v-12.338c0-3.336,1.776-4.865,4.753-4.865,3.411,0,4.936,1.69,4.936,5.042v12.162h3.486V-628.9c0-4.73-2.677-7.654-7.155-7.654Zm67.015,20.27h3.487V-646h-3.487Z" transform="translate(-2 646)" fill="#fff" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <g id="Group_10870" data-name="Group 10870" transform="translate(0 0)" clip-path="url(#clip-path)">
+    <g id="Group_10869" data-name="Group 10869" transform="translate(-0.077 -0.057)" style="isolation: isolate">
+      <g id="Group_10868" data-name="Group 10868" transform="translate(0 0)" clip-path="url(#clip-path-2)">
+        <g id="Group_10867" data-name="Group 10867" transform="translate(0.077 0.057)" clip-path="url(#clip-path-3)">
+          <g id="Group_10866" data-name="Group 10866" clip-path="url(#clip-path)">
+            <path id="Path_11633" data-name="Path 11633" d="M-3-651H126.813v44.835H-3Z" transform="translate(0.393 648.393)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

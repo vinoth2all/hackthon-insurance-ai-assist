@@ -1,9 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from 'next/image';
-import HealthCareIcon from '../../img/Healthcare_AI_Assist_w.svg';
-import KynIcon from '../../img/Kyndryl-logo-w.svg';
 import { useRouter } from 'next/navigation';
 import { Amplify } from 'aws-amplify';
 import { confirmSignIn, fetchAuthSession, signIn } from 'aws-amplify/auth';
@@ -172,10 +169,8 @@ export default function LoginPage() {
     return (
         <>
             <div className="flex w-screen h-screen">
-                <div className="flex-1 bg-[url('/login-bg.jpg')] bg-cover bg-center w-screen h-screen">
+                <div className="flex-1 bg-[url('/login-bg.PNG')] bg-cover bg-center w-screen h-screen">
                     <div className="p-20 h-screen">
-                        <Image src={HealthCareIcon} alt="sre_icon" height={36} />
-                        <Image src={KynIcon} alt="kyn_icon" height={36} className="absolute start-20 bottom-15" />
                     </div>
                 </div>
                 <div className="flex-1 w-screen h-screen bg-linear-to-r from-white to-[#DFFFF1]">

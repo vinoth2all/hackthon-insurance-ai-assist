@@ -1,0 +1,15 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hackthoninsuranceaia-dev-b1a75-authRole",
+      "UnauthRoleArn": "arn:aws:iam::761639967350:role/amplify-hackthoninsuranceaia-dev-b1a75-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::761639967350:role/amplify-hackthoninsuranceaia-dev-b1a75-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-hackthoninsuranceaia-dev-b1a75-deployment",
+      "UnauthRoleName": "amplify-hackthoninsuranceaia-dev-b1a75-unauthRole",
+      "StackName": "amplify-hackthoninsuranceaia-dev-b1a75",
+      "StackId": "arn:aws:cloudformation:us-east-1:761639967350:stack/amplify-hackthoninsuranceaia-dev-b1a75/23993000-5d64-11f0-9c16-0affe4a4d8d3",
+      "AmplifyAppId": "d1byxrgmedofb2"
+    }
+  }
+}

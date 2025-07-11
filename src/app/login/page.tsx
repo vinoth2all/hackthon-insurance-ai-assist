@@ -169,7 +169,7 @@ export default function LoginPage() {
     return (
         <>
             <div className="flex w-screen h-screen">
-                <div className="flex-1 bg-[url('/login-bg.PNG')] bg-cover bg-center w-screen h-screen">
+                <div className="flex-1 bg-[url('/login-bg.jpg')] bg-cover bg-center w-screen h-screen">
                     <div className="p-20 h-screen">
                     </div>
                 </div>

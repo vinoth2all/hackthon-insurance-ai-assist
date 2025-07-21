@@ -48,18 +48,18 @@ function DashboardPage() {
 
     const getColor=(vl: string)=>{
         if(vl==='Approved') {
-            return 'w-[11%] text[#4CDD84] text-[14px]';
+            return "#4CDD84";
         }else if (vl==='Rejected') {
-            return 'w-[11%] text[#DA1E28] text-[14px]';
+            return "#DA1E28";
         } else {
-            return 'w-[11%] text-[#3d3c3c] text-[14px]';
+            return "#FF832B";
         }
     }
 
     return (
         <div className='w-full h-screen  flex flex-col hd-shadow py-6 px-16'>
             <div>
-                <div className='flex relative px-[15px] py-[10px]'>
+              {ticketsData.length > 0 && <div className='flex relative px-[15px] py-[10px]'>
                     {/* {header.map((headerItem, index) => {
                         return <div key={index} className='w-[10%] text-[14px] text-[#5D5C5C] font-semibold '> {headerItem}</div>
                     })} */}
@@ -73,7 +73,7 @@ function DashboardPage() {
                     <div className='w-[10%] text-[14px] text-[#5D5C5C] font-semibold'>Ticket Status</div>
                     <div className='w-[11%] text-[14px] text-[#5D5C5C] font-semibold'>Approval Status</div>
                     <div className='w-[12%] text-[14px] text-[#5D5C5C] font-semibold'>Comments</div>
-                </div>
+                </div> }
                 <div className='relative mt-[10px] '>
                     {ticketsData.length > 0 && ticketsData.map((item, index) => {
                         const approve_color = getColor(item['approval_status']);
@@ -86,7 +86,7 @@ function DashboardPage() {
                             <div className='w-[10%] text-[#3d3c3c] text-[14px]'> {item['reviewed_by']}</div>
                             <div className='w-[13%] text-[#3d3c3c] text-[14px]'> {item['ai_response']}</div>
                             <div className='w-[10%] text-[#3d3c3c] text-[14px]'> {item['ticket_status']}</div>
-                            <div className={approve_color}> {item['approval_status']}</div>
+                            <div className="w-[11%] text-[14px]" style={{ color: approve_color }}> {item['approval_status']}</div>
                             <div className='w-[12%] text-[#3d3c3c] text-[14px]'> {item['comments']}</div>
                         </div>
                         </div>

@@ -199,7 +199,7 @@ export default function LoginPage() {
                                         <input
                                             name="username"
                                             type="text"
-                                            placeholder="sre@company.com"
+                                            placeholder="Email id"
                                             className="w-64 mt-[10px] bg-[#ffffff] text-[#565246] border-1 border-[#AED2BE] rounded-[3px] px-[10px] py-[5px] focus:outline-none"
                                             value={userName}
                                             onChange={(e) => updateEmailField(e.target.value)}

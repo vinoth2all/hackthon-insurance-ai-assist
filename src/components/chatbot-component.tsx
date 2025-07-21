@@ -40,7 +40,11 @@ interface Response {
     message_time?: string | null
 }
 
-function ChatBotComponent() {
+type Props = {
+  history: () => void;
+};
+
+function ChatBotComponent({history}: Props) {
     const router = useRouter();
     const [current_message, setCurrent_message] = useState("");
     const temp: MessageFormat = utils.getWelcomeMsg();
@@ -86,6 +90,7 @@ function ChatBotComponent() {
                 setIsResponse(false);
                 //setRefNumber(refNo);
                 botResclearTimer();
+                history();
             } else if (response.status === 202) {
                 if (botResTimeoutRef.current) {
                     setTimeout(() => {

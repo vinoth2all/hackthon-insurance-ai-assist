@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import kyndrylSvg from '../img/Healthcare_AI_Assist.svg';
+import kyndrylSvg from '../img/Insurance AI Assist.svg';
 import UserSVg from '../img/user.svg';
 import UserFilledSVg from '../img/user--avatar--filled.svg';
 import { useState } from 'react';

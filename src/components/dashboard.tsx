@@ -100,7 +100,7 @@ function DashboardPage() {
             </div>
             {isOpen && <div className='w-full h-full'>
                 <div className='model dg-shadow bg-gray-50'>
-                    <div className='green-bg px-[20px] py-[10px] border-b-[1px] border-[#9BEECA]'> Healthcare Assistant
+                    <div className='green-bg px-[20px] py-[10px] border-b-[1px] border-[#9BEECA]'> Insurance AI Assist
                         <Image src={CloseIcon} height={22} alt="close" className='float-right cursor-pointer' onClick={onClose}></Image>
                     </div>
                     <ChatBotComponent />

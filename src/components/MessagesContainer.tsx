@@ -52,7 +52,7 @@ export const MessagesContainer: React.FC<MessagesContainerProps> = ({ messages, 
                 {createBotMessages()}
                 {isResponse &&
                     <div className='flex'>
-                        <Image src={BotIcon} alt="sre_icon" height={58} width={58} />
+                        <Image src={BotIcon} alt="sre_icon" height={48} width={48} />
                         <div className='ry-loader h-[20px] ml-[30px] mt-[15px]'> </div>
                     </div>}
             </div>

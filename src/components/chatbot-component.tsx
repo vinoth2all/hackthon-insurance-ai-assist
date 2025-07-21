@@ -3,9 +3,9 @@
 
 import { KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import EndTask from '../img/Icon-End-task.svg';
-import EndTaskWhite from '../img/Icon-End-task-white.svg';
+//import Image from 'next/image';
+//import EndTask from '../img/Icon-End-task.svg';
+//import EndTaskWhite from '../img/Icon-End-task-white.svg';
 import * as utils from "../utils/utils";
 import { MessagesContainer } from '@/components/MessagesContainer';
 import { SendButton } from '@/components/send-button';
@@ -13,7 +13,7 @@ import { MessageTextBoxContainer } from '@/components/MessageTextBoxContainer';
 import AxiosInstance from '../utils/axiosInstance';
 //import { Loader } from './loader';
 import CustomDialog from './custom-dialog';
-import { Loader } from './loader';
+//import { Loader } from './loader';
 
 interface BotReq {
     params: Data;
@@ -46,19 +46,18 @@ function ChatBotComponent() {
     const temp: MessageFormat = utils.getWelcomeMsg();
     const [messages, setMessage] = useState([temp]);
     const [isResponse, setIsResponse] = useState(false);
-    const [isHovering, setIsHovered] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isSummaryClicked, setIsSummaryClicked] = useState(false);
+    //const [isHovering, setIsHovered] = useState(false);
+    //const [isLoading, setIsLoading] = useState(false);
+   // const [isSummaryClicked, setIsSummaryClicked] = useState(false);
     const [isMessage, setIsMessage] = useState(false);
     const [title, setTitle] = useState('');
     const [msg, setMsg] = useState('');
-    const onMouseEnter = () => setIsHovered(true);
-    const onMouseLeave = () => setIsHovered(false);
-    const [refNumber, setRefNumber] = useState('');
+    //const onMouseEnter = () => setIsHovered(true);
+    //const onMouseLeave = () => setIsHovered(false);
+    //const [refNumber, setRefNumber] = useState('');
     const userName = localStorage.getItem('userName');
     const userId: string = userName !== null ? userName : '';
     const botResTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-    const botApplyResTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [isIncidentNoValid, setIsIncidentNoValid] = useState(false);
 
     useEffect(() => {
@@ -69,11 +68,7 @@ function ChatBotComponent() {
         return () => {
             if (botResTimeoutRef.current) {
                 clearTimeout(botResTimeoutRef.current);
-            }
-
-            if (botApplyResTimeoutRef.current) {
-                clearTimeout(botApplyResTimeoutRef.current);
-            }
+            }           
         };
 
 
@@ -81,22 +76,15 @@ function ChatBotComponent() {
 
     const getBotResponse = async (refNo: string, msg: []) => {
         try {
-            const reqPath = "/" + utils.INCIDENT + "/" + utils.CONVERSATIONS;
+            const reqPath = utils.CHAT + "/" + userId + "/" + utils.CONVERSATIONS;
             const req: BotReq = { params: { "ref_num": refNo } }
             const response = await AxiosInstance.get(reqPath, req);
             if (response.status === 200) {
-                const data = response?.data === undefined ? {} : response?.data;
-                const is_actual_response = response?.data.use_actual_message === undefined ? false : response?.data.use_actual_message;
-                const actual_response = response?.data.actual_message === undefined ? '' : response?.data.actual_message;
-                let allMsg;
-                if (is_actual_response) {
-                    allMsg = [...msg, { "message": actual_response, "isbotmessage": true }];
-                } else {
-                    allMsg = [...msg, { "message": data, "isbotmessage": true }];
-                }
+                const data = response?.data === undefined ? {} : response?.data?.data;
+                const allMsg = [...msg, { "message": data, "isbotmessage": true }];
                 setMessage(allMsg);
                 setIsResponse(false);
-                setRefNumber(refNo);
+                //setRefNumber(refNo);
                 botResclearTimer();
             } else if (response.status === 202) {
                 if (botResTimeoutRef.current) {
@@ -117,22 +105,16 @@ function ChatBotComponent() {
         }
     }
 
-    const botApplyResClearTimer = () => {
-        if (botApplyResTimeoutRef.current) {
-            clearTimeout(botApplyResTimeoutRef.current);
-        }
-    }
-
     // @ts-expect-error
     const sendConversations = async (req, msg) => {
         try {
-            const reqPath = "/" + utils.INCIDENT + "/" + utils.CONVERSATIONS
+            const reqPath = utils.CHAT + "/" + userId + "/" + utils.CONVERSATIONS;
             const response = await AxiosInstance.post(reqPath, req);
             const refNo = response?.data.ref_num === undefined ? {} : response?.data.ref_num;
             if (response.status === 200) {
                 botResTimeoutRef.current = setTimeout(() => {
                     getBotResponse(refNo, msg)
-                }, 20000);
+                }, 5000);
             } else if (response.status === 202) {
                 const data = response?.data === undefined ? {} : response?.data;
                 const res_message = data?.message === undefined ? {} : data?.message;
@@ -181,10 +163,8 @@ function ChatBotComponent() {
         if (current_msg !== "" && enter) {
             const ts = utils.getCurrentTimestamp();
             const req = utils.conversation_req;
-            req.app_name = '011y';
             req.content = current_msg;
             req.entry_ts = ts.utc;
-            req.user_id = userName === null ? '' : userName;
             // @ts-expect-error
             msg = [...messages, { "message": current_msg, "ts": ts },];
             setCurrent_message(current_msg);
@@ -205,34 +185,34 @@ function ChatBotComponent() {
         }
     }
 
-    const endTaskClick = async () => {
-        try {
-            const req = {};
-            // @ts-expect-error     
-            req['app_name'] = appId;
-            // @ts-expect-error
-            req['user_id'] = userId;
-            const reqPath = "/" + utils.INCIDENT + "/" + utils.SUMMARY;
-            setIsLoading(true);
-            const response = await AxiosInstance.post(reqPath, req);
-            if (response.status === 200) {
-                setIsLoading(false);
-                setIsMessage(true);
-                setTitle('End Chat');
-                setMsg('Your chat was closed, If you want start again please click new task');
-                botResclearTimer();
-                botApplyResClearTimer();
-            }
-        } catch (error) {
-            console.log(error);
-            setIsLoading(false);
-            setIsMessage(true);
-            setTitle('End Chat');
-            setMsg("I'm unable to close your chat.");
-            botResclearTimer();
-            botApplyResClearTimer();
-        }
-    }
+    // const endTaskClick = async () => {
+    //     try {
+    //         const req = {};
+    //         // @ts-expect-error     
+    //         req['app_name'] = appId;
+    //         // @ts-expect-error
+    //         req['user_id'] = userId;
+    //         const reqPath = "/" + utils.ALL_TICKETS + "/" + utils.SUMMARY;
+    //         setIsLoading(true);
+    //         const response = await AxiosInstance.post(reqPath, req);
+    //         if (response.status === 200) {
+    //             setIsLoading(false);
+    //             setIsMessage(true);
+    //             setTitle('End Chat');
+    //             setMsg('Your chat was closed, If you want start again please click new task');
+    //             botResclearTimer();
+    //             botApplyResClearTimer();
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //         setIsLoading(false);
+    //         setIsMessage(true);
+    //         setTitle('End Chat');
+    //         setMsg("I'm unable to close your chat.");
+    //         botResclearTimer();
+    //         botApplyResClearTimer();
+    //     }
+    // }
 
     const endTaskOK = () => {
         if (isIncidentNoValid) {
@@ -243,7 +223,6 @@ function ChatBotComponent() {
             setIsMessage(false);
             setMsg('');
             botResclearTimer();
-            botApplyResClearTimer();
         }
     }
 
@@ -251,61 +230,60 @@ function ChatBotComponent() {
         setMessage([utils.getWelcomeMsg()])
         setIsResponse(false);
         setCurrent_message('');
-        setIsSummaryClicked(false);
+       // setIsSummaryClicked(false);
         botResclearTimer();
-        botApplyResClearTimer();
     }
 
-    const applyFix = async (isApply: boolean) => {
-        try {
-            const reqPath = "/" + utils.INCIDENT + "/" + utils.APPLY_FIX;
-            const req = utils.apply_fix_req;
-            const ts = utils.getCurrentTimestamp();
-            req.app_name = 'O11y';
-            req.ref_num = refNumber;
-            req.is_approved = isApply;
-            req.user_id = userId;
-            req.entry_ts = ts.utc;
-            setIsResponse(true);
-            const response = await AxiosInstance.post(reqPath, req);
-            const refNo = response?.data.ref_num === undefined ? {} : response?.data.ref_num;
-            if (response.status === 200) {
-                if (isApply && refNo) {
-                    botApplyResTimeoutRef.current = setTimeout(() => {
-                        getApplyFixRes(refNo)
-                    }, 20000);
-                } else {
-                    setIsResponse(false);
-                }
-            }
-        } catch (error) {
-            botErrorMessage(error, []);
-        }
-    }
+    // const applyFix = async (isApply: boolean) => {
+    //     try {
+    //         const reqPath = "/" + utils.ALL_TICKETS + "/" + utils.APPLY_FIX;
+    //         const req = utils.apply_fix_req;
+    //         const ts = utils.getCurrentTimestamp();
+    //         req.app_name = 'O11y';
+    //         req.ref_num = refNumber;
+    //         req.is_approved = isApply;
+    //         req.user_id = userId;
+    //         req.entry_ts = ts.utc;
+    //         setIsResponse(true);
+    //         const response = await AxiosInstance.post(reqPath, req);
+    //         const refNo = response?.data.ref_num === undefined ? {} : response?.data.ref_num;
+    //         if (response.status === 200) {
+    //             if (isApply && refNo) {
+    //                 botApplyResTimeoutRef.current = setTimeout(() => {
+    //                     getApplyFixRes(refNo)
+    //                 }, 20000);
+    //             } else {
+    //                 setIsResponse(false);
+    //             }
+    //         }
+    //     } catch (error) {
+    //         botErrorMessage(error, []);
+    //     }
+    // }
 
-    const getApplyFixRes = async (refNo: string) => {
-        try {
-            const reqPath = "/" + utils.INCIDENT + "/" +  utils.APPLY_FIX;
-            const req: BotReq = { params: { "ref_num": refNo } }
-            const response = await AxiosInstance.get(reqPath, req);
-            if (response.status === 200) {
-                const data = response?.data === undefined ? {} : response?.data;
-                const allMsg = [...messages, { "message": data, "isbotmessage": true }];
-                setMessage(allMsg);
-                setIsResponse(false);
-                setRefNumber(refNo);
-                botApplyResClearTimer();
-            } else if (response.status === 202) {
-                if (botApplyResTimeoutRef.current)
-                    setTimeout(() => {
-                        getApplyFixRes(refNo)
-                    }, 10000);
-            }
-        } catch (error) {
-            botErrorMessage(error, []);
-            botApplyResClearTimer();
-        }
-    }
+    // const getApplyFixRes = async (refNo: string) => {
+    //     try {
+    //         const reqPath = "/" + utils.ALL_TICKETS + "/" +  utils.APPLY_FIX;
+    //         const req: BotReq = { params: { "ref_num": refNo } }
+    //         const response = await AxiosInstance.get(reqPath, req);
+    //         if (response.status === 200) {
+    //             const data = response?.data === undefined ? {} : response?.data;
+    //             const allMsg = [...messages, { "message": data, "isbotmessage": true }];
+    //             setMessage(allMsg);
+    //             setIsResponse(false);
+    //             setRefNumber(refNo);
+    //             botApplyResClearTimer();
+    //         } else if (response.status === 202) {
+    //             if (botApplyResTimeoutRef.current)
+    //                 setTimeout(() => {
+    //                     getApplyFixRes(refNo)
+    //                 }, 10000);
+    //         }
+    //     } catch (error) {
+    //         botErrorMessage(error, []);
+    //         botApplyResClearTimer();
+    //     }
+    // }
 
     return (
         <div className='flex dialog'>
@@ -313,9 +291,9 @@ function ChatBotComponent() {
                 <div className='relative h-full'>
                     <div className='h-full'>
                         {/* @ts-expect-error: Unreachable code error */}
-                        <MessagesContainer messages={messages} isResponse={isResponse} applyFix={applyFix}></MessagesContainer>
+                        <MessagesContainer messages={messages} isResponse={isResponse}></MessagesContainer>
                         <div className='bottom_wrapper'>
-                            {(messages.length > 5 || isSummaryClicked) && <div className='right'>
+                            {/* {(messages.length > 5 || isSummaryClicked) && <div className='right'>
                                 <div className="relative group">
                                     <div className='px-[20px] py-[5px] flex justify-center border border-[#FF9688] mb-[5px] hover:bg-[#FF9688] cursor-pointer ed-tk'
                                         onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={endTaskClick}>
@@ -326,7 +304,7 @@ function ChatBotComponent() {
                                         Resolution helpful? End task if satisfied.
                                     </div>
                                 </div>
-                            </div>}
+                            </div>} */}
                             <div className='btm_border'>
                                 <div className="clearfix flex w-full">
                                     <MessageTextBoxContainer
@@ -340,7 +318,7 @@ function ChatBotComponent() {
                     </div>
                 </div>
             </div>
-            {isLoading && <Loader />}
+            {/* {isLoading && <Loader />} */}
             {isMessage && <CustomDialog isOpen={isMessage} title={title} message={msg} onModelClose={() => endTaskOK()} />}
         </div>
     );

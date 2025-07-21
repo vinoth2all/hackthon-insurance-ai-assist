@@ -68,7 +68,9 @@ export const APPLY_FIX = "/apply-fix";
 
 export const SUMMARY = 'summary';
 
-export const INCIDENT = "incidents"
+export const ALL_TICKETS = "/alltickets";
+
+export const CHAT = "/chat";
 
 export const getCurrentTimestamp = () => {
   const now = new Date();
@@ -89,9 +91,7 @@ export const getCurrentTimestamp = () => {
 }
 
 export const conversation_req = {
-  "app_name": "",
   "content": "",
-  "user_id": "",
   "entry_ts": ""
 }
 

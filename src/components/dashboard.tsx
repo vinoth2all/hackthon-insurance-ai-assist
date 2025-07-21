@@ -57,7 +57,7 @@ function DashboardPage() {
     // }
 
     return (
-        <div className='w-full h-[calc(100vh * 48px)] flex flex-col hd-shadow py-6 px-16'>
+        <div className='w-full h-[calc(100vh_-_48px)] flex flex-col hd-shadow py-6 px-16'>
             <div>
               {ticketsData.length > 0 && <div className='flex relative px-[15px] py-[10px]'>
                     {/* {header.map((headerItem, index) => {
